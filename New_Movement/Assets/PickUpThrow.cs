@@ -10,6 +10,7 @@ public class PickUpThrow : MonoBehaviour
 	public bool carryObject;
 	public GameObject Item;
 	public bool IsThrowable;
+	public GameObject camera;
 
 	// Start is called before the first frame update
 	void Start()
@@ -23,11 +24,12 @@ public class PickUpThrow : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.E))
 		{
 			RaycastHit hit;
-			Ray directionRay = new Ray(transform.position, transform.forward);
+			Ray directionRay = new Ray(camera.transform.position, camera.transform.forward);
             
 			if (Physics.Raycast(directionRay, out hit, 20f))
 			{
                 Debug.Log("Hello: " + hit.collider.gameObject.tag);
+				Debug.DrawLine(directionRay.origin, hit.point);
 				if (hit.collider.tag == "Object")
 				{
                     
